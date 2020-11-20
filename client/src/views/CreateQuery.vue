@@ -98,7 +98,7 @@ export default {
     methods: {
      async createQuery() {
           try {
-            await axios.post('http://localhost:5000/api/query/createPost/',this.query);  
+            await axios.post('/api/query/createPost/',this.query);  
             this.$router.push({name: "Queries"});
           } catch (error) {
                 console.log(error);
@@ -106,7 +106,7 @@ export default {
       }  
     },
     async created() {
-        const response = await axios.get('http://localhost:5000/api/user/getUserName/');
+        const response = await axios.get('/api/user/getUserName/');
         this.user = response.data;
         this.query.author = this.user.name;
     }

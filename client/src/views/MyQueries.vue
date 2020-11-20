@@ -78,7 +78,7 @@ export default {
     }
   },
   async created() {
-    const response = await axios.get('http://localhost:5000/api/query/user/'+this.author);
+    const response = await axios.get('/api/query/user/'+this.author);
     this.myqueries = response.data;
   }
 
