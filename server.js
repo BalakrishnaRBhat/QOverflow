@@ -35,7 +35,7 @@ mongoose.connect('mongodb://localhost:27017/qoverflow', { useNewUrlParser: true,
         console.log("Connected to Database");
     }).catch(err => {
         console.log("Could not connect to Database");
-    });
+});
 
 
 // set PORT

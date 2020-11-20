@@ -5,11 +5,6 @@
         wrap
       >
         <v-container class="mt-10">
-          <!-- <v-sheet
-            color="orange lighten-5"
-            elevation="12"
-            rounded
-          > -->
             <v-row
             align="center"
             justify="center"
@@ -46,7 +41,6 @@
                               {{query.title}}
                             </v-card-title>
                             <v-card-text v-html="query.body">
-                              <!-- <article v-html="query.body"></article> -->
                             </v-card-text>
                             <v-card-actions
                             >
@@ -61,7 +55,6 @@
                               </v-chip>
                             </v-chip-group>
                             <v-spacer></v-spacer>
-                            Asked by, <span class="font-weight-bold">{{query.author}}</span>
                             </v-card-actions>
                           </v-card>
                       </v-list-item-content>             
@@ -70,7 +63,6 @@
                 </v-list>
               </v-col>
             </v-row>
-          <!-- </v-sheet> -->
         </v-container>
       </v-layout>
   </v-main>

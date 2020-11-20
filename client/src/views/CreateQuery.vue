@@ -31,11 +31,6 @@
                                 v-model="query.title"
                             >                         
                             </v-text-field>
-                            <!-- <v-textarea
-                                label="Body"
-                                value="Enter the details here"
-                            >
-                            </v-textarea> -->
                             <vue-editor v-model="query.body"></vue-editor>
                             <v-combobox
                                 v-model="query.tags"

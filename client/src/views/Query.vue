@@ -46,16 +46,16 @@
               <v-list 
                 class="overflow-y-auto"
                 color="orange lighten-5"
-                v-if="query.answers.length"
+                v-if="query.answers && query.answers.length"
               >
-              <v-header class="headline font-weight-bold:">
+              <h1 class="headline font-weight-bold:">
                  Answers
-              </v-header>
+              </h1>
                 <template
                   v-for="answer in query.answers"
                 >
                   <v-list-item
-                    v-bind:key="answer"
+                    v-bind:key="answer.answer"
                   >
                     <v-list-item-content>
                       <v-card
@@ -66,10 +66,10 @@
                       <v-card-title class="subtitle-1">
                       By, {{answer.ans_user}}
                       </v-card-title>
-                        <v-card-content
+                        <v-card-text
                          v-html="answer.answer"
                         >
-                        </v-card-content>
+                        </v-card-text>
                       </v-card>
                     </v-list-item-content>
                   </v-list-item>
@@ -115,7 +115,7 @@ export default {
       query: {},
       answer: {
         ans_user: "",
-        answer: ""
+        answer: "Enter the answer here"
       }
     }
   },
@@ -125,7 +125,6 @@ export default {
   async created() {
     const response = await axios.get('http://localhost:5000/api/query/'+this.id);
     this.query = response.data;
-    console.log(this.query);
     const res = await axios.get('http://localhost:5000/api/user/getUserName/');
     this.user = res.data;
     this.answer.ans_user = this.user.name;

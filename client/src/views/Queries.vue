@@ -5,11 +5,6 @@
         wrap
       >
         <v-container class="mt-10">
-          <!-- <v-sheet
-            color="orange lighten-5"
-            elevation="12"
-            rounded
-          > -->
             <v-row
             align="center"
             justify="center"
@@ -47,7 +42,6 @@
                               {{query.title}}
                             </v-card-title>
                             <v-card-text v-html="query.body">
-                              <!-- <article v-html="query.body"></article> -->
                             </v-card-text>
                             <v-card-actions
                             >
@@ -71,7 +65,6 @@
                 </v-list>
               </v-col>
             </v-row>
-          <!-- </v-sheet> -->
         </v-container>
       </v-layout>
   </v-main>
@@ -88,7 +81,6 @@ export default {
   async created() {
     const response = await axios.get('http://localhost:5000/api/query');
     this.queries = response.data;
-    console.log(this.queries);
   }
 }
 </script>

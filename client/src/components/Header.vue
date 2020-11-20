@@ -100,7 +100,6 @@ export default {
       drawer: false,
       group: null,
       selectedItem: 1,
-      // user_id: this.user._id,
       user: {}
     }
   },
@@ -135,7 +134,5 @@ export default {
 </script>
 
 <style scoped>
-/* v-navigation-drawer {
-  min-height: 100vh;
-} */
+
 </style>

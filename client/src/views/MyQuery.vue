@@ -37,7 +37,6 @@
                     </v-chip>
                   </v-chip-group>
                   <v-spacer></v-spacer>
-                  Asked by,<span class="font-weight-bold">{{myquery.author}}</span>
                 </v-card-actions>
               </v-card>
               <v-divider>
@@ -46,16 +45,16 @@
               <v-list 
                 class="overflow-y-auto"
                 color="orange lighten-5"
-                v-if="myquery.answers.length"
+                v-if="myquery.answers && myquery.answers.length"
               >
-              <v-header class="headline font-weight-bold:">
+              <h1 class="headline font-weight-bold:">
                  Answers
-              </v-header>
+              </h1>
                 <template
                   v-for="answer in myquery.answers"
                 >
                   <v-list-item
-                    v-bind:key="answer"
+                    v-bind:key="answer.answer"
                   >
                     <v-list-item-content>
                       <v-card
@@ -66,10 +65,10 @@
                       <v-card-title class="subtitle-1">
                       By, {{answer.ans_user}}
                       </v-card-title>
-                        <v-card-content
+                        <v-card-text
                          v-html="answer.answer"
                         >
-                        </v-card-content>
+                        </v-card-text>
                       </v-card>
                     </v-list-item-content>
                   </v-list-item>
