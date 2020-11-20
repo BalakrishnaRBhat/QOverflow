@@ -13,7 +13,6 @@
                   <h3 class="headline font-weight-bold black--text text--accent-4">LOGIN</h3>
                 </div>
               </v-card-title>
-              <v-alert type="error" v-if="formState && error">{{error}}</v-alert>
               <v-snackbar v-if="error" timeout="3000" v-model="formState" color="error">{{error}}</v-snackbar>
               <v-form
                 ref="form"
