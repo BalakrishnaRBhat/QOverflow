@@ -92,9 +92,9 @@ export default {
     }
   },
   async created() {
-    const res = await axios.get('/api/user/getUsername/');
+    const res = await axios.get('http://localhost:8000/api/user/getUsername/');
     this.user = res.data;
-    const response = await axios.get('/api/query/user/'+this.user.name+'/'+this.id);
+    const response = await axios.get('http://localhost:8000/api/query/user/'+this.user.name+'/'+this.id);
     this.myquery = response.data;
   }
 }

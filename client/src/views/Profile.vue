@@ -63,7 +63,7 @@ export default {
     }
   },
   async created() {
-    const response = await axios.get('/api/user/profile/');
+    const response = await axios.get('http://localhost:8000/api/user/profile/');
     this.user = response.data.user;
   }
 }

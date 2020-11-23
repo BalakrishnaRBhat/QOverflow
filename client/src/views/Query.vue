@@ -123,16 +123,16 @@ export default {
     VueEditor
   },
   async created() {
-    const response = await axios.get('/api/query/'+this.id);
+    const response = await axios.get('http://localhost:8000/api/query/'+this.id);
     this.query = response.data;
-    const res = await axios.get('/api/user/getUserName/');
+    const res = await axios.get('http://localhost:8000/api/user/getUserName/');
     this.user = res.data;
     this.answer.ans_user = this.user.name;
   },
   methods: {
     async postAnswer() {
       try {
-        await axios.post('/api/query/'+this.query.author, this.answer);
+        await axios.post('http://localhost:8000/api/query/'+this.query.author, this.answer);
         this.$router.go(this.$router.currentRoute)
       } catch (error) {
         console.log(error);

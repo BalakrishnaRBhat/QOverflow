@@ -16,6 +16,15 @@
                 <v-toolbar-title class="display-1">
                   Queries
                 </v-toolbar-title>
+                <v-spacer></v-spacer>
+                 <v-text-field 
+                v-model="searchText"
+                small
+                rounded
+                class="brown lighten-1"
+                height="50"
+                placeholder="Search by Title"
+                hide-details single-line></v-text-field>
               </v-toolbar>
                 <v-list
                   class="overflow-y-auto"
@@ -23,7 +32,7 @@
 
                 >
                   <template
-                    v-for="query in queries"                    
+                    v-for="query in filteredQueries"                    
                   >
                     <v-list-item
                       v-bind:key="query._id"
@@ -75,12 +84,20 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      queries: []
+      queries: [],
+      searchText: ""
     }
   },
   async created() {
-    const response = await axios.get('/api/query');
+    const response = await axios.get('http://localhost:8000/api/query');
     this.queries = response.data;
+  },
+  computed: {
+    filteredQueries() {
+      return this.queries.filter(query => {
+        return query.title.toLowerCase().includes(this.searchText.toLowerCase())
+      })
+    }
   }
 }
 </script>

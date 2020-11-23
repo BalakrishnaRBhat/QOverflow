@@ -16,14 +16,22 @@
                 <v-toolbar-title class="display-1">
                   My Queries
                 </v-toolbar-title>
+                <v-spacer></v-spacer> 
+                <v-text-field 
+                v-model="searchText"
+                small
+                rounded
+                class="brown lighten-1"
+                height="50"
+                placeholder="Search by Title"
+                hide-details single-line></v-text-field>
               </v-toolbar>
                 <v-list
                   class="overflow-y-auto"
                   color="orange lighten-5"
-
                 >
                   <template
-                    v-for="query in myqueries"                    
+                    v-for="query in filteredQueries"                    
                   >
                     <v-list-item
                       v-bind:key="query._id"
@@ -74,14 +82,21 @@ export default {
   data() {
     return {
       myqueries: [],
+      searchText: "",
       author: this.$route.params.userName
     }
   },
   async created() {
-    const response = await axios.get('/api/query/user/'+this.author);
+    const response = await axios.get('http://localhost:8000/api/query/user/'+this.author);
     this.myqueries = response.data;
+  },
+  computed: {
+    filteredQueries() {
+      return this.myqueries.filter(query => {
+        return query.title.toLowerCase().includes(this.searchText.toLowerCase())
+      })
+    }
   }
-
 }
 </script>
 
