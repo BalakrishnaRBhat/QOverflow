@@ -17,14 +17,19 @@
                   My Queries
                 </v-toolbar-title>
                 <v-spacer></v-spacer> 
-                <v-text-field 
-                v-model="searchText"
-                small
-                rounded
-                class="brown lighten-1"
-                height="50"
-                placeholder="Search by Title"
-                hide-details single-line></v-text-field>
+                <v-autocomplete 
+                  v-model="searchTag"
+                  small
+                  rounded
+                  class="brown lighten-1"
+                  height="50"
+                  small-chips
+                  :search-input.sync="search"
+                  :items="items"
+                  placeholder="Search by Tag"
+                  hide-details 
+                  single-line
+                ></v-autocomplete>
               </v-toolbar>
                 <v-list
                   class="overflow-y-auto"
@@ -78,11 +83,14 @@
 
 <script>
 import axios from 'axios';
+import { tagnames } from '../data/tags';
 export default {
   data() {
     return {
       myqueries: [],
-      searchText: "",
+      search: null,
+      searchTag: null,
+      items: tagnames,
       author: this.$route.params.userName
     }
   },
@@ -93,7 +101,11 @@ export default {
   computed: {
     filteredQueries() {
       return this.myqueries.filter(query => {
-        return query.title.toLowerCase().includes(this.searchText.toLowerCase())
+        if(this.searchTag == null) {
+          return query;
+        } else {
+          return query.tags.includes(this.searchTag);
+        }
       })
     }
   }
