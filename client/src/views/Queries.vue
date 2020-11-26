@@ -97,7 +97,7 @@ export default {
     }
   },
   async created() {
-    const response = await axios.get('http://localhost:8000/api/query/');
+    const response = await axios.get('/api/query/');
     this.queries = response.data;
   },
   computed: {

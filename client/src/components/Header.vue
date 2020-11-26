@@ -116,7 +116,7 @@ export default {
     async check() {
       if(this.isLoggedIn) {
         this.drawer = !this.drawer;
-        const response = await axios.get('http://localhost:8000/api/user/getUserName/');
+        const response = await axios.get('/api/user/getUserName/');
         this.user = response.data;
       }
     },
