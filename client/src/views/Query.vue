@@ -36,6 +36,9 @@
                       {{tag}}
                     </v-chip>
                   </v-chip-group>
+                </v-card-actions>
+                <v-card-actions>
+                  <p class="ma-2 font-weight-bold">No of Answers: {{query.no_of_answers}}</p>
                   <v-spacer></v-spacer>
                     Asked by, <span class="font-weight-bold">{{query.author}}</span>
                 </v-card-actions>

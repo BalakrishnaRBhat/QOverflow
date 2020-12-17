@@ -71,6 +71,8 @@ router.post('/:queryId', async (req, res) => {
            res.json({message: error, success: false});
        });
    });
+   // update no_of_answers for the query
+   await Query.findOneAndUpdate({author: req.params.queryId}, {$inc: {no_of_answers: 1}}, {new: true, useFindAndModify: false});
 });
 
 

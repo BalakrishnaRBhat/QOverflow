@@ -22,6 +22,10 @@ const querySchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Answer'
     }],
+    no_of_answers: {
+        type: Number,
+        default: 0
+    },
     createdAt: {
         type: Date,
         default: Date.now()
