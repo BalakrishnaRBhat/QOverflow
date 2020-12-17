@@ -38,6 +38,9 @@
                   </v-chip-group>
                   <v-spacer></v-spacer>
                 </v-card-actions>
+                <v-card-actions>
+                  <p class="font-weight-bold">No of Answers: {{myquery.no_of_answers}}</p>
+                </v-card-actions>
               </v-card>
               <v-divider>
               </v-divider>    
