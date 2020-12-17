@@ -9,6 +9,10 @@ const answerSchema = mongoose.Schema({
     answer: {
         type: String,
         required: true
+    },
+    vote: {
+        type: Number,
+        default: 0
     }
 });
 

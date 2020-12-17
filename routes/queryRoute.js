@@ -75,6 +75,24 @@ router.post('/:queryId', async (req, res) => {
    await Query.findOneAndUpdate({author: req.params.queryId}, {$inc: {no_of_answers: 1}}, {new: true, useFindAndModify: false});
 });
 
+// upvote a answer for a query
+router.patch('/upvote/:answerId', async (req, res) => {
+    try {
+        await Answer.findOneAndUpdate({_id: req.params.answerId}, {$inc: {vote: 1}}, {new: true, useFindAndModify: false});
+        res.json({success: true})
+    } catch (error) {
+        console.log(error);    
+    }
+});
 
+// downvote a answer for a query
+router.patch('/downvote/:answerId', async (req, res) => {
+    try {
+        await Answer.findOneAndUpdate({_id: req.params.answerId}, {$inc: {vote: -1}}, {new: true, useFindAndModify: false});
+        res.json({success: true})
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 module.exports = router;

@@ -55,10 +55,10 @@
                  Answers
               </h1>
                 <template
-                  v-for="answer in query.answers"
+                  v-for="(answer, index) in query.answers"
                 >
                   <v-list-item
-                    v-bind:key="answer.answer"
+                    v-bind:key="index"
                   >
                     <v-list-item-content>
                       <v-card
@@ -73,6 +73,25 @@
                          v-html="answer.answer"
                         >
                         </v-card-text>
+                        <v-card-actions>
+                          <v-btn
+                            class="ma-2"
+                            icon
+                            color="green"
+                            @click="upvoteVote(answer._id)"
+                          >
+                            <v-icon>mdi-thumb-up</v-icon>
+                          </v-btn>
+                            {{answer.vote}}
+                          <v-btn
+                            class="ma-2"
+                            icon
+                            color="red"
+                            @click="downvoteVote(answer._id)"
+                          >
+                            <v-icon>mdi-thumb-down</v-icon>
+                          </v-btn>
+                        </v-card-actions>
                       </v-card>
                     </v-list-item-content>
                   </v-list-item>
@@ -110,6 +129,22 @@
 <script>
 import { VueEditor } from "vue2-editor";
 import axios from 'axios';
+
+async function upvote(id) {
+      try {
+        await axios.patch('/api/query/upvote/'+id);
+      } catch (error) {
+        console.log(error);
+      }
+}
+async function downvote(id) {
+      try {
+        await axios.patch('/api/query/downvote/'+id);
+      } catch (error) {
+        console.log(error);
+      }
+}
+
 export default {
   data() {
     return {
@@ -140,6 +175,24 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    async upvoteVote(id) {
+      upvote(id)
+      // update the view
+      const response = await axios.get('/api/query/'+this.id);
+      this.query = response.data;
+      const res = await axios.get('/api/user/getUserName/');
+      this.user = res.data;
+      this.answer.ans_user = this.user.name;
+    },
+    async downvoteVote(id) {
+      downvote(id)
+      // update the view
+      const response = await axios.get('/api/query/'+this.id);
+      this.query = response.data;
+      const res = await axios.get('/api/user/getUserName/');
+      this.user = res.data;
+      this.answer.ans_user = this.user.name;
     }
   }
 }
