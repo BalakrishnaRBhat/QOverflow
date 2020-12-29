@@ -65,14 +65,14 @@ router.get('/user/:userId/:postId', async (req, res) => {
 // post a answer to a specific query
 router.post('/:queryId', async (req, res) => {
    await Answer.create(req.body).then((dbAnswer) => {
-       return Query.findOneAndUpdate({author: req.params.queryId}, {$push: {answers: dbAnswer}}, {new: true, useFindAndModify: false}).then(() => {
+       return Query.findOneAndUpdate({_id: req.params.queryId}, {$push: {answers: dbAnswer}}, {new: true, useFindAndModify: false}).then(() => {
            res.json({message: "Answer Submitted Successfully", success: true});
        }).catch((error) => {
            res.json({message: error, success: false});
        });
    });
    // update no_of_answers for the query
-   await Query.findOneAndUpdate({author: req.params.queryId}, {$inc: {no_of_answers: 1}}, {new: true, useFindAndModify: false});
+   await Query.findOneAndUpdate({_id: req.params.queryId}, {$inc: {no_of_answers: 1}}, {new: true, useFindAndModify: false});
 });
 
 // upvote a answer for a query

@@ -170,7 +170,7 @@ export default {
   methods: {
     async postAnswer() {
       try {
-        await axios.post('/api/query/'+this.query.author, this.answer);
+        await axios.post('/api/query/'+this.query._id, this.answer);
         this.$router.go(this.$router.currentRoute)
       } catch (error) {
         console.log(error);
